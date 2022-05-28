@@ -107,6 +107,8 @@ approve(id: ID) : async Proposal
 
 当提议的支持者数量，达到阈值**M**后，会立即执行该提议。这部分使用到了ic management API里面的内容。具体参考[这里](https://github.com/alexxuyang/icp_course_H_3/blob/9e4dbb0ee047be8e5bd4baba214a4ac4e17006be/src/icp_course_H_3/main.mo#L144)。
 
+在调用`ic`去创建canister时，我们使用了`cycles`API为其提供了1T的`cycle`[代码](https://github.com/alexxuyang/icp_course_H_3/blob/2d922694ff62cc3e38fbbdd1398aa685bc979d9c/src/icp_course_H_3/main.mo#L153)。
+
 拒绝提议定义：
 ```rust
 refuse(id: ID) : async Proposal
