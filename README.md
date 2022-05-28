@@ -116,3 +116,29 @@ refuse(id: ID) : async Proposal
 
 当提议的拒绝者人数超过`N - M`时（[参考这里](https://github.com/alexxuyang/icp_course_H_3/blob/9e4dbb0ee047be8e5bd4baba214a4ac4e17006be/src/icp_course_H_3/main.mo#L108)），该提议将会终止。
 
+
+# 测试部分
+
+首先是通过`dfx deploy`部署合约到主网。这里有2点需要注意，一是，wallet中需要有足够的cycles可以使用，这个可以在nns中将icp直接转入到default identity的wallet中。二是，我们设计的是actor class带入参的，所以在deploy后面需要使用`--argument`把初始化的参数传入。
+
+
+```rust
+dfx deploy --network=ic --with-cycles=2000000000000 --argument '(2, vec {principal "cnh44-cjhoh-yyoqz-tcp2t-yto7n-6vlpk-xw52p-zuo43-rrlge-4ozr5-6ae"; principal "ndb4h-h6tuq-2iudh-j3opo-trbbe-vljdk-7bxgi-t5eyp-744ga-6eqv6-2ae"; principal "lzf3n-nlh22-cyptu-56v52-klerd-chdxu-t62na-viscs-oqr2d-kyl44-rqe"})'
+```
+
+
+具体过程参考下图
+![deploy](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/01.deploy-to-mainnet-with-2T-cycles.png)
+
+
+第二步，创建canister，大致流程：
+- 切换到id1
+- 使用id1发起创建canister的提议
+- 使用id1支持刚刚发起的提议
+- 切换到id2
+- 使用id1支持刚刚发起的提议
+最后创建了一个id为`nh3zp-eiaaa-aaaai-ackvq-cai`的canister
+
+
+具体参考下图
+![create](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/02.propose-approve-create-canister.png)
