@@ -7,11 +7,12 @@ import Blob "mo:base/Blob";
 import Nat "mo:base/Nat";
 import Option "mo:base/Option";
 import Principal "mo:base/Principal";
+import Cycles "mo:base/ExperimentalCycles";
 
 import IC "./ic";
 import Types "./types";
 
-actor class() = self {
+actor class cycle_manager(m: Nat, list: [Types.Owner]) = self {
   public type Owner = Types.Owner;
   public type Canister = Types.Canister;
   public type ID = Types.ID;
@@ -23,10 +24,14 @@ actor class() = self {
 
   // map of ( Canister - Bool), value is true means this canister need multi-sig managed
   var ownedCanisterPermissions : HashMap.HashMap<Canister, Bool> = HashMap.HashMap<Canister, Bool>(0, func(x: Canister,y: Canister) {x==y}, Principal.hash);
-  var ownerList : [Owner] = [];
+  var ownerList : [Owner] = list;
 
-  var M : Nat = 0;
+  var M : Nat = m;
   var N : Nat = ownerList.size();
+
+  public query func get_model() : async (Nat, Nat) {
+    (M, N)
+  };
 
   public query func get_permission(id: Canister) : async ?Bool {
     ownedCanisterPermissions.get(id)
@@ -145,6 +150,7 @@ actor class() = self {
             compute_allocation = null;
           };
 
+          Cycles.add(1_000_000_000_000);
           let result = await ic.create_canister({settings = ?settings});
 
           ownedCanisters := Array.append(ownedCanisters, [result.canister_id]);
@@ -181,19 +187,19 @@ actor class() = self {
     ownedCanisters
   };
 
-  public shared (msg) func init(list : [Owner], m : Nat) : async Nat {
-    assert(m <= list.size() and m >= 1);
+  // public shared (msg) func init(list : [Owner], m : Nat) : async Nat {
+  //   assert(m <= list.size() and m >= 1);
 
-    if (ownerList.size() != 0) {
-      return M
-    };
+  //   if (ownerList.size() != 0) {
+  //     return M
+  //   };
 
-    ownerList := list;
-    M := m;
-    N := list.size();
+  //   ownerList := list;
+  //   M := m;
+  //   N := list.size();
 
-    Debug.print(debug_show("Caller: ", msg.caller, ". Iint with owner list: ", list, "M=", M, "N=", N));
+  //   Debug.print(debug_show("Caller: ", msg.caller, ". Iint with owner list: ", list, "M=", M, "N=", N));
 
-    M
-  };
+  //   M
+  // };
 };
