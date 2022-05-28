@@ -128,6 +128,8 @@ refuse(id: ID) : async Proposal
 dfx deploy --network=ic --with-cycles=2000000000000 --argument '(2, vec {principal "cnh44-cjhoh-yyoqz-tcp2t-yto7n-6vlpk-xw52p-zuo43-rrlge-4ozr5-6ae"; principal "ndb4h-h6tuq-2iudh-j3opo-trbbe-vljdk-7bxgi-t5eyp-744ga-6eqv6-2ae"; principal "lzf3n-nlh22-cyptu-56v52-klerd-chdxu-t62na-viscs-oqr2d-kyl44-rqe"})'
 ```
 
+部署完成后，新创建的canister ID为：`njzuh-7yaaa-aaaai-ackuq-cai`。主网candid链接为：[这里](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=njzuh-7yaaa-aaaai-ackuq-cai)。
+
 
 具体过程参考下图
 ![deploy](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/01.deploy-to-mainnet-with-2T-cycles.png)
