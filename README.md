@@ -136,9 +136,39 @@ dfx deploy --network=ic --with-cycles=2000000000000 --argument '(2, vec {princip
 - 使用id1发起创建canister的提议
 - 使用id1支持刚刚发起的提议
 - 切换到id2
-- 使用id1支持刚刚发起的提议
+- 使用id2支持刚刚发起的提议
 最后创建了一个id为`nh3zp-eiaaa-aaaai-ackvq-cai`的canister
 
 
 具体参考下图
 ![create](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/02.propose-approve-create-canister.png)
+
+
+第三步，拒绝提议，大致流程：
+- 切换到id1
+- 使用id1发起创建canister的提议
+- 使用id1支持刚刚发起的提议
+- 切换到id2
+- 使用id2拒绝刚刚发起的提议
+- 切换到id3
+- 使用id3拒绝刚刚发起的提议
+最后该提议被拒绝并结束
+
+
+具体参考下二图
+![refuse1](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/03.propose-approve.png)
+![refuse2](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/04.refuse-refuse.png)
+
+
+第四步，为canister移除权限：
+- 切换到id1
+- 查询canister权限，结果为**需要多签**
+- 使用id1发起移除该canister权限的提议
+- 使用id1支持刚刚发起的提议
+- 切换到id2
+- 使用id2支持刚刚发起的提议
+- 查询canister权限，结果为**不需要多签**
+
+
+具体参考下图
+![permission](https://github.com/alexxuyang/icp_course_H_3/blob/main/images/05.propose-approve-approve-remove-permission.png)
