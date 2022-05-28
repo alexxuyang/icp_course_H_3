@@ -137,6 +137,8 @@ dfx deploy --network=ic --with-cycles=2000000000000 --argument '(2, vec {princip
 - 使用id1支持刚刚发起的提议
 - 切换到id2
 - 使用id2支持刚刚发起的提议
+
+
 最后创建了一个id为`nh3zp-eiaaa-aaaai-ackvq-cai`的canister
 
 
@@ -152,6 +154,8 @@ dfx deploy --network=ic --with-cycles=2000000000000 --argument '(2, vec {princip
 - 使用id2拒绝刚刚发起的提议
 - 切换到id3
 - 使用id3拒绝刚刚发起的提议
+
+
 最后该提议被拒绝并结束
 
 
