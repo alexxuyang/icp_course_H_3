@@ -20,7 +20,7 @@ main.mo是主文件。
 
 **ownCanisters**保存了所有创建的**Canister**的列表
 
-**ownedCanisterPermissions**保存了所有**Canister**的权限，确实都需要多签管理。可以通过提议将权限移除。
+**ownedCanisterPermissions**保存了所有**Canister**的权限，canister缺省都需要多签管理。可以通过提议多人签署后，将权限移除。
 
 **ownerList**保存了管理员列表
 
@@ -114,5 +114,5 @@ refuse(id: ID) : async Proposal
 
 拒绝提议时，只需提供提议**id**，返回**proposal**
 
-当提议的拒绝者人数超过`N - M`时（[参考这里](https://github.com/alexxuyang/icp_course_H_3/blob/9e4dbb0ee047be8e5bd4baba214a4ac4e17006be/src/icp_course_H_3/main.mo#L108)），该议题将会终止。
+当提议的拒绝者人数超过`N - M`时（[参考这里](https://github.com/alexxuyang/icp_course_H_3/blob/9e4dbb0ee047be8e5bd4baba214a4ac4e17006be/src/icp_course_H_3/main.mo#L108)），该提议将会终止。
 
