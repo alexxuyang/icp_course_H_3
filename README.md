@@ -121,7 +121,7 @@ refuse(id: ID) : async Proposal
 
 # 测试部分
 
-首先是通过`dfx deploy`部署合约到主网。这里有2点需要注意，一是，wallet中需要有足够的cycles可以使用，这个可以在nns中将icp直接转入到default identity的wallet中。二是，我们设计的是actor class带入参的，所以在deploy后面需要使用`--argument`把初始化的参数传入。
+首先是通过`dfx deploy`部署合约到主网。这里有2点需要注意，一是，wallet中需要有足够的cycles可以使用，这个可以在nns中将icp转换为cycle，并直接转入到default identity的wallet中。二是，我们设计的是actor class带入参的，所以在deploy后面需要使用`--argument`把初始化的参数传入。
 
 
 ```rust
